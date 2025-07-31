@@ -1,6 +1,13 @@
 <script setup lang="ts">
+import BlockCode from './BlockCode.vue';
+import BlockText from './BlockText.vue';
+import { defineProps } from 'vue';
+
+const props = defineProps<{
+  block: { type: string; content: string; language?: string };
+  canEdit: boolean;
+}>();
 </script>
 <template>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, non esse dolorem itaque ipsa deleniti nostrum
-    impedit obcaecati minima quae at dolores qui ad dolorum deserunt omnis quisquam officiis maiores.</p>
+  <component :is="block.type === 'code' ? BlockCode : BlockText" v-bind="block" :editable="canEdit" />
 </template>
