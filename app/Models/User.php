@@ -8,6 +8,7 @@ use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -15,6 +16,7 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
     use Uuid;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -50,4 +52,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * The relationships that should always be loaded
+     *
+     * @var array<int, string>
+     */
+    protected $with = [
+        'roles',
+        'permissions',
+    ];
 }
