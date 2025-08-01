@@ -14,7 +14,7 @@ return new class () extends Migration {
             $table->id();
             $table->uuid('uuid')->unique()->index();
             $table->string('name');
-            $table->string('color');
+            $table->string('color')->nullable();
             $table->boolean('selected')->default(false);
             $table->timestamps();
         });

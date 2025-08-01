@@ -13,11 +13,10 @@ return new class () extends Migration {
         Schema::create('article_blocks', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique()->index();
-            $table->string('name');
-            $table->string('type');
+            $table->string('type')->default('text');
             $table->string('language')->nullable();
-            $table->longText('content');
-            $table->integer('order');
+            $table->longText('content')->nullable();
+            $table->integer('order')->default(0);
             $table->foreignId('article_id')->constrained('articles')->onDelete('cascade');
             $table->timestamps();
         });
