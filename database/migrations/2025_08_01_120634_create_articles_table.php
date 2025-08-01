@@ -13,6 +13,8 @@ return new class () extends Migration {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique()->index();
+            $table->string('title');
+            $table->boolean('published')->default(false);
             $table->timestamps();
         });
     }
