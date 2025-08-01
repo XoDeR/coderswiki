@@ -13,6 +13,27 @@ class ArticleBlock extends Model
     use HasFactory;
     use Uuid;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    protected $fillable = [
+        'type',
+        'language',
+        'content',
+        'order',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'id',
+    ];
+
     public function article(): BelongsTo
     {
         return $this->belongsTo(Article::class);

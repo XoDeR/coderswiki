@@ -12,6 +12,15 @@ class ArticleTagSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $tagNames = [
+            'js',
+            'ts',
+            'php',
+            'laravel',
+            'react',
+            'vue',
+            'angular',
+            'go',
+        ];
     }
 }
