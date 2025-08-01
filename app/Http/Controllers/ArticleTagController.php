@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ArticleTag;
 use App\Http\Requests\StoreArticleTagRequest;
 use App\Http\Requests\UpdateArticleTagRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleTagController extends Controller
 {
@@ -62,5 +64,30 @@ class ArticleTagController extends Controller
     public function destroy(ArticleTag $articleTag)
     {
         //
+    }
+
+    public function guestUpdateSelected(Request $request)
+    {
+        $validated = $request->validate([
+            'tags' => 'array',
+            'tags.*' => 'uuid',
+        ]);
+
+        session(['selected_tags' => $validated['tags']]);
+
+        return redirect()->back();
+    }
+
+    public function updateSelected(Request $request)
+    {
+        $validated = $request->validate([
+            'tags' => 'array',
+            'tags.*' => 'uuid',
+        ]);
+
+        $user = Auth::user();
+        if ($user) {
+            $user->selectedTags()->sync($validated['tags']);
+        }
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleTagController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -23,10 +24,14 @@ Route::get('dashboard', function () {
 
 Route::middleware('guest')->group(function () {
     Route::get('/dashboard-guest', [DashboardGuestController::class, 'index'])->name('dashboard.guest');
+
+    Route::post('/article-tags/guest-update-selected', [ArticleTagController::class, 'guestUpdateSelected'])->name('article.tags.guest.update.selected');
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard-creator', [DashboardCreatorController::class, 'index'])->name('dashboard.creator');
+
+    Route::post('/article-tags/update-selected', [ArticleTagController::class, 'updateSelected'])->name('article.tags.update.selected');
 });
 
 require __DIR__.'/settings.php';

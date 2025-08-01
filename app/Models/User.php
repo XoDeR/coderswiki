@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -62,4 +63,9 @@ class User extends Authenticatable
         'roles',
         'permissions',
     ];
+
+    public function selectedTags(): BelongsToMany
+    {
+        return $this->belongsToMany(ArticleTag::class, 'article_tag_user');
+    }
 }

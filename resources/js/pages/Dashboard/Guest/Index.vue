@@ -1,6 +1,17 @@
 <script setup lang="ts">
 import Article from '@/components/Article/Article.vue';
 import { Head, Link } from '@inertiajs/vue3';
+
+import { router } from '@inertiajs/vue3'
+
+// example of function to update selected tags for guest
+function guestUpdateSelectedTags(selectedTagUuids: string[]) {
+  router.post('/article-tags/guest-update-selected', { tags: selectedTagUuids }, {
+    preserveScroll: true,
+    preserveState: true,
+  })
+}
+
 </script>
 
 <template>

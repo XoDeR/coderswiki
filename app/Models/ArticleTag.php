@@ -37,4 +37,12 @@ class ArticleTag extends Model
     {
         return $this->belongsToMany(Article::class);
     }
+
+    /**
+     * Users that have selected this tag
+     */
+    public function usersWithTagSelected(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'article_tag_user');
+    }
 }
