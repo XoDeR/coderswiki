@@ -15,6 +15,7 @@ return new class () extends Migration {
             $table->uuid('uuid')->unique()->index();
             $table->string('name');
             $table->string('color');
+            $table->boolean('selected')->default(false);
             $table->timestamps();
         });
     }
