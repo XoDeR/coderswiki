@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ArticleTag;
+use App\Models\User;
 use App\Http\Requests\StoreArticleTagRequest;
 use App\Http\Requests\UpdateArticleTagRequest;
 use Illuminate\Http\Request;
@@ -87,7 +88,9 @@ class ArticleTagController extends Controller
 
         $user = Auth::user();
         if ($user) {
-            $user->selectedTags()->sync($validated['tags']);
+            if ($user instanceof \App\Models\User) {
+                $user->selectedTags()->sync($validated['tags']);
+            }
         }
     }
 }
