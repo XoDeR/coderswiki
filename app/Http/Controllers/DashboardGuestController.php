@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\FormSession;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -24,10 +25,18 @@ class DashboardGuestController extends Controller
             $query->whereIn('tags.uuid', $selectedTags);
         })->get();
 
+        //// for testing only
+        $existingForm = FormSession::find(1);
+        $session = null;
+        if ($existingForm) {
+            $session = $existingForm;
+        }
+
         return Inertia::render('Dashboard/Guest/Index', [
             // 'filteredArticles' => new ArticleCollection(Article::all()->load(['tags', 'blocks'])),
             // 'allTags' => new ArticleTagCollection(ArticleTag::all()->load(['articles'])),
             // 'selectedTags' => new ArticleTagCollection(ArticleTag::selected()->load(['articles'])),
+            'session' => $session
         ]);
     }
 }

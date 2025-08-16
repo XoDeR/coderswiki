@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Article from '@/components/Article/Article.vue';
+import MultiStepForm from '@/components/MultiStepForm/MultiStepForm.vue';
 import { Head, Link } from '@inertiajs/vue3';
 
 import { router } from '@inertiajs/vue3'
@@ -11,6 +12,8 @@ function guestUpdateSelectedTags(selectedTagUuids: string[]) {
     preserveState: true,
   })
 }
+
+const props = defineProps<{ session: any }>();
 
 </script>
 
@@ -45,6 +48,8 @@ function guestUpdateSelectedTags(selectedTagUuids: string[]) {
       <main class="flex w-full flex-col-reverse overflow-hidden rounded-lg lg:flex-row">
         <div
           class="flex-1 rounded-br-lg rounded-bl-lg bg-white p-6 pb-12 text-[13px] leading-[20px] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] lg:rounded-tl-lg lg:rounded-br-none lg:p-20 dark:bg-[#161615] dark:text-[#EDEDEC] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]">
+          <div>Form</div>
+          <MultiStepForm :session="session" />
           <Article />
         </div>
       </main>
