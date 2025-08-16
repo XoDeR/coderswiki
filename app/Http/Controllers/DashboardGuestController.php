@@ -20,7 +20,7 @@ class DashboardGuestController extends Controller
 
         $selectedTags = session('selected_tags', []);
 
-        $articles = Article::whereHas('tags', function ($query) use ($selectedTags) {
+        $filteredArticles = Article::whereHas('tags', function ($query) use ($selectedTags) {
             $query->whereIn('tags.uuid', $selectedTags);
         })->get();
 
